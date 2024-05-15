@@ -1,0 +1,7 @@
+ucimlrepo
+pandas
+scikit-learn
+pathlib
+catboost
+pickle
+matplotlib
