@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 from sklearn import metrics
 
-features_all_wo = ['age', 'race', 'sex', 'hours-per-week', 'native-country']
+features_all_wo = ['age', 'education', 'marital-status', 'race', 'sex', 'hours-per-week', 'native-country']
 
 #Загружаем модель
 filepath_model = r'model/model_y.pkl'
@@ -14,6 +14,9 @@ data_train = pd.read_csv(filepath_train)
 X_train = data_train[features_all_wo].values
 y_train = data_train['income'].values
 y_pred = loaded_model.predict(X_train)
+
+#print(data_train.head(40))
+#print(y_pred)
 
 print('Качество предсказания - Accuracy = ',metrics.accuracy_score(y_train, y_pred))
 

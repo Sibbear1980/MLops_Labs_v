@@ -24,7 +24,7 @@ def feature_importance_plotter(model, features_names):
 
 features_all = ['age', 'education', 'marital-status', 'occupation', 'race', 'sex', 'hours-per-week', 'native-country', 'income']
 #features_all_wo = ['age', 'education', 'marital-status', 'occupation', 'race', 'sex', 'hours-per-week', 'native-country']
-features_all_wo = ['age', 'race', 'sex', 'hours-per-week', 'native-country']
+features_all_wo = ['age', 'education', 'marital-status', 'race', 'sex', 'hours-per-week', 'native-country']
 
 
 # прочитаем из csv-файла подготовленный датасет для обучения
@@ -32,34 +32,6 @@ filepath_train = r'data/data_train.csv'
 data_train = pd.read_csv(filepath_train)
 X = data_train[features_all_wo].values
 y = data_train['income'].values
-
-# загрузим модель машинного обучения. Будем использовать бустинг от CatBoost
-# from catboost import CatBoostRegressor, Pool
-# #print(features_all_wo)
-# cat_features_names = ['education', 'marital-status', 'occupation']
-# train_data_reg = Pool(
-#     data=X_train,
-#     label=Y_train,
-#     cat_features=cat_features_names,
-#     feature_names=features_all_wo,
-# )
-# eval_data_reg = Pool(
-#     data=X_train,
-#     label=Y_train,
-#     cat_features=cat_features_names,
-#     feature_names=features_all_wo
-# )
-# model_y = CatBoostRegressor(iterations = 500,
-#                            early_stopping_rounds=10,
-#                            verbose = 100,
-#                            depth = 3,
-#                            objective  = 'MAE',
-#                            eval_metric= 'MAE',
-#                            random_state = 42
-#                            )
-# model_y.fit(X=train_data_reg,
-#           eval_set=eval_data_reg,
-#           )
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split

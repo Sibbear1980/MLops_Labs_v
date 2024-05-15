@@ -1,0 +1,34 @@
+pipeline{
+    agent any
+    stages{
+	    stage('Setup Environment'){
+            steps{ sh 'echo "Setup Environment by requirements.txt "'
+             }
+        }
+        stage('Download Data'){
+            steps {
+                 sh '/virtual_env_test/bin/python3 /Lab2/create_dataset.py'
+            }
+        }
+        stage('Preprocesing'){
+            steps{
+                sh '/virtual_env_test/bin/python3 /Lab2/prepare_dataset.py'
+            }
+        }
+        stage('Train Model'){
+            steps{
+                sh '/virtual_env_test/bin/python3 /Lab2/model_train.py'
+            }
+        }
+        stage('Test Model'){
+            steps{
+                sh '/virtual_env_test/bin/python3 /Lab2/make_prediction.py'
+            }
+        }
+    }
+    post {
+        always{
+            sh 'echo "Pipeline completed!"'
+        }
+    }
+}
